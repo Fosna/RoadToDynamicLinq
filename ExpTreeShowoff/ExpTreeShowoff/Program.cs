@@ -18,33 +18,73 @@ namespace ExpTreeShowoff
                 new Person { Name = "Jay", Age = 65 },
             };
 
-            ShowOffCustomSort(crew, "Name", "asc");
-            ShowOffSort(crew, "Name", "asc");
+            Console.Write("Demo 1, 2, 3 or 4? > ");
+            var choiceKey = Console.ReadKey();
+            Console.WriteLine();
 
-            ShowOffCustomSort(crew, "Age", "desc");
-            ShowOffSort(crew, "Age", "desc");
+            switch (choiceKey.Key)
+            {
+                case ConsoleKey.NumPad1:
+                case ConsoleKey.D1:
 
+                    SortDemo(crew);
 
+                    break;
+                case ConsoleKey.NumPad2:
+                case ConsoleKey.D2:
+
+                    FilterDemo(crew);
+
+                    break;
+                case ConsoleKey.NumPad3:
+                case ConsoleKey.D3:
+
+                    ShowOffGettingPropertyName();
+
+                    break;
+                case ConsoleKey.NumPad4:
+                case ConsoleKey.D4:
+
+                    SafelyDemo(crew);
+
+                    break;
+                default:
+                    Console.WriteLine("Which part didn't you get!?!");
+                    break;
+            }
+        }
+
+        private static void SafelyDemo(List<Person> crew)
+        {
+            var phill = crew.First();
+            ShowOffChildNameRecklessly(phill);
+
+            ShowOffChildNameSafely(phill);
+
+            phill.Child = new Person
+            {
+                Age = 21,
+                Name = "Alex",
+            };
+            ShowOffChildNameSafely(phill);
+        }
+
+        private static void FilterDemo(List<Person> crew)
+        {
             ShowOffCustomFilter(crew, "Age", "43");
             ShowOffFilter(crew, "Age", "43");
 
             ShowOffCustomFilter(crew, "Name", "Jay");
             ShowOffFilter(crew, "Name", "Jay");
+        }
 
+        private static void SortDemo(List<Person> crew)
+        {
+            ShowOffCustomSort(crew, "Name", "asc");
+            ShowOffSort(crew, "Name", "asc");
 
-            ShowOffGettingPropertyName();
-
-            var phill = crew.First();
-            ShowOffChildNameRecklessly(phill);
-
-            ShowOffChildNameSafely(phill);
-            
-            phill.Child = new Person 
-            { 
-                Age = 21,
-                Name = "Alex",
-            };
-            ShowOffChildNameSafely(phill);
+            ShowOffCustomSort(crew, "Age", "desc");
+            ShowOffSort(crew, "Age", "desc");
         }
 
         private static void ShowOffChildNameSafely(Person phill)
