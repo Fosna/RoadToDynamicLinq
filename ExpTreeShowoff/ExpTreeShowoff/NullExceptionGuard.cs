@@ -29,8 +29,6 @@ namespace ExpTreeShowoff
                 memberAccess = memberAccess.Expression as MemberExpression;
             }
 
-            // TODO: What if x => x
-
             var firstParam = ((MemberExpression)selectorParts.Peek()).Expression as ParameterExpression;
             if (firstParam == null) throw new InvalidOperationException("Only selector expressions are allowed. Ex.: x => x.Name.Length");
             selectorParts.Push(firstParam);
